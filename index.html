@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --color-primary:#0d010d;
+            --color-primary: #0d010d;
             --color-secondary: #1212b1;
             --color-success: #d41974;
             --color-danger: #ef260c;
@@ -19,18 +19,18 @@
         }
 
         body {
-            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, system-ui, sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, system-ui, sans-serif;
             margin: 10px;
             background-color: rgb(43, 40, 40);
             font-size: 20px;
-            text-align:left;
+            text-align: left;
         }
 
         .contenedor {
             max-width: 2400px;
             margin: 0 auto;
             background: rgb(170, 162, 162);
-            border-radius:rgb(6, 6, 13);
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 10px;
         }
@@ -39,11 +39,10 @@
             text-align: center;
             margin-bottom: 50px;
             color: rgb(12, 12, 13);
-            
         }
 
         .form-inicial {
-            display:grid;
+            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             gap: 0px;
             margin-bottom: 10px;
@@ -51,7 +50,7 @@
         }
 
         .form-group {
-            display: flexbox;
+            display: flex;
             flex-direction: column;
             gap: 0.5rem;
             font-size: 30px;
@@ -74,8 +73,7 @@
             border-radius: 2px;
             font-size: 20px;
             text-align: center;
-            font:60px;
-            max-width: ;
+            max-width: 100%;
         }
 
         .registro-header {
@@ -98,22 +96,22 @@
 
         .btn {
             padding: 0.8rem 1.5rem;
-            border: blueviolet;
+            border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .btn-primary {
-            background:rgb(231, 231, 235) ;
+            background: rgb(231, 231, 235);
             color: rgb(13, 12, 12);
-            font: 25px;
+            font-size: 25px;
         }
 
         .total-rendimiento {
             text-align: center;
             padding: 1rem;
-            background:rgb(28, 25, 24);
+            background: rgb(28, 25, 24);
             color: rgb(252, 251, 251);
             border-radius: var(--radius);
             margin: 2rem 0;
@@ -125,21 +123,65 @@
             height: 350px;
             margin: 19px;
             caret-color: rgb(23, 27, 27);
-            color-scheme: rgb(1, 1, 21);
         }
     </style>
 </head>
 <body>
     <div class="contenedor">
         <header class="header">
-            <h1> INPUT PESADAS</h1>
+            <h1>INPUT PESADAS</h1>
         </header>
 
-        <!-- Sección de entrada de datos -->
         <div class="form-inicial">
             <div class="form-group">
                 <label>Operario</label>
-                <input type="text" id="operario" class="form-control" placeholder="Nombre del operario/a">
+                <select id="operario" class="form-control">
+                    <option value="">Seleccione operario</option>
+                    <option>Adina</option>
+                    <option>Adrián</option>
+                    <option>Alba González</option>
+                    <option>Alisson</option>
+                    <option>Ana Delia</option>
+                    <option>Ana María</option>
+                    <option>Andreea Micu</option>
+                    <option>Arelis</option>
+                    <option>Carolina</option>
+                    <option>Clara</option>
+                    <option>Cristiani</option>
+                    <option>Daniel</option>
+                    <option>Daniela</option>
+                    <option>Daniele</option>
+                    <option>Dora</option>
+                    <option>Elena Denisa</option>
+                    <option>Elena Tabernilla</option>
+                    <option>Florina</option>
+                    <option>Francisco</option>
+                    <option>Irene</option>
+                    <option>Isaura</option>
+                    <option>Julio</option>
+                    <option>Lisandra</option>
+                    <option>Luciana</option>
+                    <option>Lucia</option>
+                    <option>M Carmen</option>
+                    <option>Mariana</option>
+                    <option>Marleny</option>
+                    <option>Miriam</option>
+                    <option>Nicoleta</option>
+                    <option>Nicole</option>
+                    <option>Noelia</option>
+                    <option>Noelia Andrada</option>
+                    <option>Oksana</option>
+                    <option>Rafael Morales</option>
+                    <option>Rafael Patiño</option>
+                    <option>Sandra</option>
+                    <option>Sergio</option>
+                    <option>Soraya</option>
+                    <option>Tako</option>
+                    <option>Tamara</option>
+                    <option>Tania</option>
+                    <option>Victorio</option>
+                    <option>Yousra</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Fecha</label>
@@ -155,7 +197,6 @@
             </div>
         </div>
 
-        <!-- Tabla de registros -->
         <div class="registros-container">
             <div class="registro-header">
                 <div>SKU</div>
@@ -168,19 +209,19 @@
             <div id="registros"></div>
         </div>
 
-        <!-- Controles -->
-        <div style="text-align: center; margin: 5;">
+        <div style="text-align: center; margin: 20px;">
             <button class="btn btn-primary" id="agregar-registro">
                 <i class="fas fa-plus"></i> Nuevo Registro
             </button>
+            <button class="btn btn-primary" id="exportar-csv">
+                <i class="fas fa-file-csv"></i> Exportar a CSV
+            </button>
         </div>
 
-        <!-- Resumen -->
         <div class="total-rendimiento">
             Rendimiento Turno Actual: <span id="rendimiento-promedio">0%</span>
         </div>
 
-        <!-- Gráfico -->
         <div class="chart-container">
             <canvas id="grafico"></canvas>
         </div>
@@ -197,6 +238,7 @@
 
             async init() {
                 await this.cargarObjetivos();
+                this.limpiarListaOperarios();
                 this.setupUI();
                 this.initChart();
                 this.agregarRegistro();
@@ -205,28 +247,40 @@
 
             async cargarObjetivos() {
                 try {
-                    const response = await fetch('pesadas.json');
+                    const response = await fetch('targets.json');
                     if (!response.ok) throw new Error('Error de carga');
                     const data = await response.json();
                     this.objetivos = data.reduce((acc, item) => {
-                        acc[item.SKU.toString()] = item.TARGET_HORA;
+                        acc[item.SKU.toString()] = item.TARGET;
                         return acc;
                     }, {});
                 } catch (error) {
-                    console.error('Usando datos de prueba:', error);
-                    this.objetivos = {
-                        '801327': 85,
-                        '801605': 120,
-                        '36147': 60,
-                        '801345': 55,
-                        '800890': 20,
-                        '34567': 12
-                    };
+                    console.error('Error cargando objetivos:', error);
+                    this.objetivos = {};
                 }
+            }
+
+            limpiarListaOperarios() {
+                const select = document.getElementById('operario');
+                const uniqueNames = new Set();
+                
+                Array.from(select.options).forEach(option => {
+                    const normalized = option.text.trim().toLowerCase();
+                    if (uniqueNames.has(normalized)) {
+                        option.remove();
+                    } else {
+                        uniqueNames.add(normalized);
+                    }
+                });
+                
+                const options = Array.from(select.options);
+                options.sort((a, b) => a.text.localeCompare(b.text));
+                options.forEach(option => select.appendChild(option));
             }
 
             setupUI() {
                 document.getElementById('agregar-registro').addEventListener('click', () => this.agregarRegistro());
+                document.getElementById('exportar-csv').addEventListener('click', () => this.generarCSV());
                 document.getElementById('registros').addEventListener('input', () => this.actualizarCalculos());
                 document.getElementById('registros').addEventListener('change', (e) => {
                     if (e.target.classList.contains('sku-select')) this.actualizarTarget(e.target);
@@ -234,8 +288,7 @@
             }
 
             setFechaActual() {
-                const fechaInput = document.getElementById('fecha');
-                fechaInput.value = new Date().toISOString().split('T')[0];
+                document.getElementById('fecha').value = new Date().toISOString().split('T')[0];
             }
 
             crearRegistroHTML() {
@@ -248,8 +301,8 @@
                             <option value="${sku}">${sku}</option>
                         `).join('')}
                     </select>
-                    <input type="number" class="pesadas-input form-control" min="0">
-                    <input type="number" class="tiempo-input form-control" min="1" >
+                    <input type="number" class="pesadas-input form-control" min="0" placeholder="Cantidad">
+                    <input type="number" class="tiempo-input form-control" min="1" placeholder="Minutos">
                     <div class="target-display">-</div>
                     <div class="rendimiento-display">0%</div>
                     <button class="btn-eliminar" style="background: var(--color-danger); color: white;">
@@ -261,15 +314,18 @@
 
             agregarRegistro() {
                 const registro = this.crearRegistroHTML();
-                registro.querySelector('.btn-eliminar').addEventListener('click', () => registro.remove());
+                registro.querySelector('.btn-eliminar').addEventListener('click', () => {
+                    registro.remove();
+                    this.actualizarCalculos();
+                });
                 document.getElementById('registros').appendChild(registro);
-                this.actualizarCalculos();
             }
 
             actualizarTarget(selectElement) {
                 const registro = selectElement.closest('.registro-item');
                 const sku = selectElement.value;
                 registro.querySelector('.target-display').textContent = this.objetivos[sku] || '-';
+                this.actualizarCalculos();
             }
 
             calcularRendimiento(pesadas, tiempo, target) {
@@ -303,18 +359,59 @@
                 this.actualizarGrafico(promedio);
             }
 
+            generarCSV() {
+                const registros = Array.from(document.querySelectorAll('.registro-item'));
+                const headers = [
+                    'Operario', 'Fecha', 'Turno', 'SKU', 
+                    'Pesadas Realizadas', 'Tiempo (minutos)', 
+                    'Objetivo por Hora', 'Rendimiento (%)'
+                ];
+
+                const datos = registros.map(registro => {
+                    return {
+                        operario: document.getElementById('operario').value,
+                        fecha: document.getElementById('fecha').value,
+                        turno: document.getElementById('turno').value,
+                        sku: registro.querySelector('.sku-select').value,
+                        pesadas: registro.querySelector('.pesadas-input').value || '0',
+                        tiempo: registro.querySelector('.tiempo-input').value || '0',
+                        target: registro.querySelector('.target-display').textContent,
+                        rendimiento: registro.querySelector('.rendimiento-display').textContent.replace('%', '')
+                    };
+                });
+
+                const csvContent = [
+                    headers.join(','),
+                    ...datos.map(item => [
+                        `"${item.operario}"`, `"${item.fecha}"`, `"${item.turno}"`,
+                        `"${item.sku}"`, item.pesadas, item.tiempo,
+                        item.target, item.rendimiento
+                    ].join(','))
+                ].join('\n');
+
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                
+                link.setAttribute('href', url);
+                link.setAttribute('download', `pesadas_${new Date().toISOString().slice(0,10)}.csv`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
             initChart() {
                 const ctx = document.getElementById('grafico').getContext('2d');
                 this.chart = new Chart(ctx, {
-                    type: 'doughnut', 
+                    type: 'doughnut',
                     data: {
-                        labels: [ 'RESTANTE', 'ALCANZADO'],
+                        labels: ['ALCANZADO', 'RESTANTE'],
                         datasets: [{
                             data: [0, 100],
-                            backgroundColor: [ 'rgb(0, 150, 0)', 'rgb(255, 0, 0)' ],
-                            
+                            backgroundColor: ['#4CAF50', '#FF5252'],
+                            borderWidth: 0
                         }]
-                        
                     },
                     options: {
                         responsive: true,
@@ -322,8 +419,8 @@
                         plugins: {
                             legend: { position: 'bottom' },
                             tooltip: { enabled: false }
-                            
-                        }
+                        },
+                        animation: { duration: 500 }
                     }
                 });
             }
@@ -334,7 +431,6 @@
             }
         }
 
-        // Iniciar aplicación
         window.addEventListener('DOMContentLoaded', () => new SistemaPesadas());
     </script>
 </body>
